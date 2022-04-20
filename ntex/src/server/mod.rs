@@ -60,7 +60,7 @@ pub enum SslError<E> {
 }
 
 #[derive(Debug)]
-enum ServerCommand {
+pub enum ServerCommand {
     WorkerFaulted(usize),
     Pause(oneshot::Sender<()>),
     Resume(oneshot::Sender<()>),
@@ -79,7 +79,7 @@ enum ServerCommand {
 pub struct Server(Sender<ServerCommand>, Option<oneshot::Receiver<()>>);
 
 impl Server {
-    fn new(tx: Sender<ServerCommand>) -> Self {
+    pub fn new(tx: Sender<ServerCommand>) -> Self {
         Server(tx, None)
     }
 
